@@ -1,0 +1,34 @@
+package doWhile;
+
+public class DoWhileTest02 {
+
+	public static void main(String[] args) {
+		
+		int i,out;
+		out=0;
+		do {
+			i=5;
+			do {		
+				System.out.print("*");
+				i--;
+			}while(i>0);
+			System.out.println();
+			
+			out++;
+		}while(out<5);
+		
+		/*out =0;
+		while(out<5) {
+			do {
+				i=5;
+				System.out.print("*");
+				i--;
+			}while(i>0);
+			System.out.println();
+			out++;
+		}*/
+		
+
+	}
+
+}

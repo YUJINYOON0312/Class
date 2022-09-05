@@ -1,0 +1,66 @@
+
+public class LoopTest03 {
+
+	public static void main(String[] args) {
+		
+		//2단출력
+		
+//		System.out.printf("2 * %d = %d\n", 1, 2*1);
+//		System.out.printf("2 * %d = %d\n", 2, 2*2);
+//		System.out.printf("2 * %d = %d\n", 3, 2*3);
+		
+		/*int i;
+		
+		System.out.println("2단");
+		i=1;
+		while(i<=9) {
+			System.out.printf("%d * %d = %d\n",2, i, 2*i);
+			i++; 
+		}
+		
+		System.out.println("3단");
+		i=1;
+		while(i<=9) {
+			System.out.printf("%d * %d = %d\n",3, i, 3*i);
+			i++; 	
+		}
+		
+		System.out.println("4단");
+		i=1;
+		while(i<=9) {
+			System.out.printf("%d * %d = %d\n",4, i, 4*i);
+			i++; 	
+		}*/
+		
+		
+		/* int dan = 1;
+		 while(dan<10) {
+			 System.out.println(dan+"단");
+			 j++;
+		
+			 int i = 1;
+			 while(i<10) {
+				 System.out.printf("%d * %d = %d\n",dan, i, dan*i);
+				 i++;
+			 }
+		}*/
+		
+		
+		
+		int dan=2;
+		
+		while(dan<=9) {
+			System.out.println(dan+"단");
+			int i=1;
+			while(i<=9) {
+				System.out.printf("%d * %d = %d\n",dan, i, dan*i);
+				i++;
+			}
+			dan++;
+		}
+		
+		
+
+	}
+
+}

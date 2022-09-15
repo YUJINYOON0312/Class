@@ -1,51 +1,51 @@
---Å×ÀÌºí»ı¼º
---CREATE TABLE Å×ÀÌºíÀÌ¸§(ÄÃ·³¸í1 Å¸ÀÔ,ÄÃ·³¸í2,...);
---Å×ÀÌºí »èÁ¦
---drop TABLE Å×ÀÌºíÀÌ¸§;
+--í…Œì´ë¸”ìƒì„±
+--CREATE TABLE í…Œì´ë¸”ì´ë¦„(ì»¬ëŸ¼ëª…1 íƒ€ì…,ì»¬ëŸ¼ëª…2,...);
+--í…Œì´ë¸” ì‚­ì œ
+--drop TABLE í…Œì´ë¸”ì´ë¦„;
 
---¹®ÀÚ¿­
+--ë¬¸ìì—´
 create table str(
     c1 CHAR(10),
     c2 VARCHAR2(10)
 );
-insert into str VALUES('°¡','°¡');
+insert into str VALUES('ê°€','ê°€');
 select * from str;
 select c1, c2 from str;
-select lengthb(c1) as charÅ¸ÀÔ, lengthb(c2) varchar2Å¸ÀÔ from str;
---¹®ÀÚ¿­Àº varchar2 ÀÌ¿ëÇÕ½Ã´Ù °¡º¯±æÀÌ ¹®ÀÚ¿­Ã³¸®
---insert into str VALUES('°¡','°¡³ª´Ù¶ó');
+select lengthb(c1) as charíƒ€ì…, lengthb(c2) varchar2íƒ€ì… from str;
+--ë¬¸ìì—´ì€ varchar2 ì´ìš©í•©ì‹œë‹¤ ê°€ë³€ê¸¸ì´ ë¬¸ìì—´ì²˜ë¦¬
+--insert into str VALUES('ê°€','ê°€ë‚˜ë‹¤ë¼');
 drop table str;
 create table str2(
     c1 CHAR(10),
-    c2 VARCHAR2(5000)--4000byte±îÁö Çã¿ë
+    c2 VARCHAR2(5000)--4000byteê¹Œì§€ í—ˆìš©
 );
 drop table str2;
 
 create table str3(
-    c1 CLOB,--±ä¹®ÀÚ¿­
-    c2 VARCHAR2(4000 char)--4000byte±îÁö Çã¿ë
+    c1 CLOB,--ê¸´ë¬¸ìì—´
+    c2 VARCHAR2(4000 char)--4000byteê¹Œì§€ í—ˆìš©
 );
 
 drop table str3;
 
---¼ıÀÚ NUMBER Á¤¼ö,½Ç¼ö ¸ğµÎÇ¥Çö
+--ìˆ«ì NUMBER ì •ìˆ˜,ì‹¤ìˆ˜ ëª¨ë‘í‘œí˜„
 create table nums(
     n1 number,
-    n2 number(2), --2ÀÚ¸® Á¤¼ö
-    n3 number(2,0),--2ÀÚ¸® ¼Ò¼ıÁ¡0
-     --(p,s) p:À¯È¿¼ıÀÚ ÃÑÀÚ¸®¼ö, s:¼Ò¼ıÁ¡ÀÚ¸®
-    n4 number(2,2),--¼Ò¼ıÁ¡¾Æ·¡ 3ÀÚ¸®¿¡¼­ ¹İ¿Ã¸²ÇÑ ¼Ò¼ıÁ¡¾Æ·¡ 2ÀÚ¸® ºÎÅÍ ÃÑ À¯È¿ÀÚ¸® ¼ö ¿ŞÂÊ2ÀÚ¸® 
-    n5 number(4,2),--¼Ò¼ıÁ¡¾Æ·¡ 3ÀÚ¸®¿¡¼­ ¹İ¿Ã¸²ÇÑ ¼Ò¼ıÁ¡¾Æ·¡ 2ÀÚ¸® ºÎÅÍ ÃÑ À¯È¿ÀÚ¸® ¼ö ¿ŞÂÊ4ÀÚ¸® 
+    n2 number(2), --2ìë¦¬ ì •ìˆ˜
+    n3 number(2,0),--2ìë¦¬ ì†Œìˆ«ì 0
+     --(p,s) p:ìœ íš¨ìˆ«ì ì´ìë¦¬ìˆ˜, s:ì†Œìˆ«ì ìë¦¬
+    n4 number(2,2),--ì†Œìˆ«ì ì•„ë˜ 3ìë¦¬ì—ì„œ ë°˜ì˜¬ë¦¼í•œ ì†Œìˆ«ì ì•„ë˜ 2ìë¦¬ ë¶€í„° ì´ ìœ íš¨ìë¦¬ ìˆ˜ ì™¼ìª½2ìë¦¬ 
+    n5 number(4,2),--ì†Œìˆ«ì ì•„ë˜ 3ìë¦¬ì—ì„œ ë°˜ì˜¬ë¦¼í•œ ì†Œìˆ«ì ì•„ë˜ 2ìë¦¬ ë¶€í„° ì´ ìœ íš¨ìë¦¬ ìˆ˜ ì™¼ìª½4ìë¦¬ 
     n6 number(4,-2)
 );
 
 insert into nums VALUES(10,10,10,0.11111,10,10);
---insert into nums VALUES(10,10,10,0.996,10,10);--0.996 -> 1.00 ºÒ°¡´É
-insert into nums VALUES(10,10,10,0.994,10,10);--0.996 -> 1.00 ºÒ°¡´É
+--insert into nums VALUES(10,10,10,0.996,10,10);--0.996 -> 1.00 ë¶ˆê°€ëŠ¥
+insert into nums VALUES(10,10,10,0.994,10,10);--0.996 -> 1.00 ë¶ˆê°€ëŠ¥
 select * from nums;
 
 create table nums2(
-    n number(4,2)--¼Ò¼ıÁ¡¾Æ·¡ 2ÀÚ¸®Æ÷ÇÔ ÃÑ4ÀÚ¸®
+    n number(4,2)--ì†Œìˆ«ì ì•„ë˜ 2ìë¦¬í¬í•¨ ì´4ìë¦¬
 );
 insert into nums2 VALUES(99);
 --insert into nums2 VALUES(100);--100.00
@@ -56,7 +56,7 @@ insert into nums2 VALUES(0.99999);--1.00
 select * from nums2;
 
 create table nums3(
-    n number(4,-2)--   -1ÀÚ¸®¿¡¼­ ¹İ¿Ã¸²ÇÑ ¼Ò¼ıÁ¡¾Æ·¡ -2ÀÚ¸®¿¡¼­ ¿ŞÂÊÀ¸·Î ÃÑ À¯È¿¼ıÀÚ4ÀÚ¸®
+    n number(4,-2)--   -1ìë¦¬ì—ì„œ ë°˜ì˜¬ë¦¼í•œ ì†Œìˆ«ì ì•„ë˜ -2ìë¦¬ì—ì„œ ì™¼ìª½ìœ¼ë¡œ ì´ ìœ íš¨ìˆ«ì4ìë¦¬
 );
 
 insert into nums3 VALUES(1234);-- 1234. -> 1200
@@ -92,20 +92,19 @@ insert into nums5 values(0.1234567890123456789012345678901234567895);
 insert into nums5 values(0.12345678901234567890123456789012345678955555555555);
 insert into nums5 values(123456789012345.67890123456789012345678901234567890);
 
---°á·ĞÀº ¼ıÀÚ »ç¿ë½Ã Á¤¼ö ½Ç¼ö ±¸ºĞÇÏÁö¸»°í number·Î »ç¿ëÇÏ¸é ÀÏ¹İÀûÀÎ ¼ıÀÚ¸ğµÎ »ç¿ë°¡´É???
 
 create table dtable(
     n number,
     c varchar2(255),
     d date
 );
-insert into dtable values(1,'¹®ÀÚ¿­µ¥ÀÌÅÍ','20220915');
+insert into dtable values(1,'ë¬¸ìì—´ë°ì´í„°','20220915');
 select * from dtable;
-insert into dtable values(2,'¹®ÀÚ¿­µ¥ÀÌÅÍ','2022/09/15');
-insert into dtable values(2,'¹®ÀÚ¿­µ¥ÀÌÅÍ','2022-09-15');
-insert into dtable values(4,'¹®ÀÚ¿­µ¥ÀÌÅÍ','220915');
-insert into dtable values(5,'ÇöÀç½Ã½ºÅÛÀÇ ³¯Â¥ Àû¿ë sysdate ·Î Ç¥±â°¡´É ', sysdate);
---insert into dtable values(2,'¹®ÀÚ¿­µ¥ÀÌÅÍ',20220915); --³¯Â¥µµ ''¾ÈÂÊ¿¡ Ç¥±â
+insert into dtable values(2,'ë¬¸ìì—´ë°ì´í„°','2022/09/15');
+insert into dtable values(2,'ë¬¸ìì—´ë°ì´í„°','2022-09-15');
+insert into dtable values(4,'ë¬¸ìì—´ë°ì´í„°','220915');
+insert into dtable values(5,'í˜„ì¬ì‹œìŠ¤í…œì˜ ë‚ ì§œ ì ìš© sysdate ë¡œ í‘œê¸°ê°€ëŠ¥ ', sysdate);
+--insert into dtable values(2,'ë¬¸ìì—´ë°ì´í„°',20220915); --ë‚ ì§œë„ ''ì•ˆìª½ì— í‘œê¸°
 
 create table dtable2(
     d1 date,
@@ -114,14 +113,14 @@ create table dtable2(
 insert into dtable2 values(sysdate, sysdate);
 insert into dtable2 values(systimestamp, systimestamp);
 select * from dtable2;
---Å×ÀÌºí »ı¼º½Ã ÁÖÀÇ»çÇ×
---Å×ÀÌºí¸íÀÇ ´Ü¼öÇüÀ» »ç¿ëÇÏ´Â °ÍÀº ±Ç°íÇÑ´Ù.--ÇÏ³ªÀÇ °´Ã¼¸¦ Ç¥±âÇÏ´Â °³Ã¼
---À¯Àúº° Å×ÀÌºí ÀÌ¸§Àº Áßº¹ºÒ°¡.
---Å×ÀÌºíÀ» ±¸¼ºÇÏ´Â ÄÃ·³¸íµµ Áßº¹ºÒ°¡
---ÄÃ·³ÀÇ µ¥ÀÌÅÍÅ¸ÀÔÀº ¹İµå½Ã ÁöÁ¤ÇØ¾ßÇÑ´Ù.
+--í…Œì´ë¸” ìƒì„±ì‹œ ì£¼ì˜ì‚¬í•­
+--í…Œì´ë¸”ëª…ì˜ ë‹¨ìˆ˜í˜•ì„ ì‚¬ìš©í•˜ëŠ” ê²ƒì€ ê¶Œê³ í•œë‹¤.--í•˜ë‚˜ì˜ ê°ì²´ë¥¼ í‘œê¸°í•˜ëŠ” ê°œì²´
+--ìœ ì €ë³„ í…Œì´ë¸” ì´ë¦„ì€ ì¤‘ë³µë¶ˆê°€
+--í…Œì´ë¸”ì„ êµ¬ì„±í•˜ëŠ” ì»¬ëŸ¼ëª…ë„ ì¤‘ë³µë¶ˆê°€
+--ì»¬ëŸ¼ì˜ ë°ì´í„°íƒ€ì…ì€ ë°˜ë“œì‹œ ì§€ì •í•´ì•¼í•œë‹¤.
 
 create table dtable3(
-    d1 --ÃÖ¼ÒÇÑ µ¥ÀÌÅÍ Å¸ÀÔÀº ÁöÁ¤ÇØ¾ßÇÑ´Ù. :Å×ÀÌºí »ı¼ººÒ°¡
+    d1 --ìµœì†Œí•œ ë°ì´í„° íƒ€ì…ì€ ì§€ì •í•´ì•¼í•œë‹¤. :í…Œì´ë¸” ìƒì„±ë¶ˆê°€
 );
 
 create table Test3#$_1234(

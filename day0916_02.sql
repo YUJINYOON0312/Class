@@ -1,6 +1,6 @@
 show user;
 
---Å×ÀÌºí »ı¼º
+--í…Œì´ë¸” ìƒì„±
 --CREATE TABLE table_name(
 --   column1 datatype,
 --   column2 datatype,
@@ -9,39 +9,39 @@ show user;
 --   columnN datatype,
 --   PRIMARY KEY( one or more columns )
 --);
--- Å° Á¦¾àÁ¶°Ç Áß PRIMARY KEY : ±âº»Å°
---Å×ÀÌºíÀ» ¸¸µé¶§ °ÅÀÇ ¸ğµç Å×ÀÌºíÀº PK »ı¼ºÀ» ±âº»À¸·Î ÇÏ´Â°É·Î...
---ÀÔ·ÂµÈ ·¹ÄÚµå°¡ ÀÏÄ¡ÇÏÁö ¾Êµµ·Ï PK ¸¦ Àû¿ë
+-- í‚¤ ì œì•½ì¡°ê±´ ì¤‘ PRIMARY KEY : ê¸°ë³¸í‚¤
+--í…Œì´ë¸”ì„ ë§Œë“¤ë•Œ ê±°ì˜ ëª¨ë“  í…Œì´ë¸”ì€ PK ìƒì„±ì„ ê¸°ë³¸
+--ì…ë ¥ëœ ë ˆì½”ë“œê°€ ì¼ì¹˜í•˜ì§€ ì•Šë„ë¡ PK ë¥¼ ì ìš©
 
---1. PK ¸¦ column Á¤ÀÇ ¹æ¹ı
+--1. PK ë¥¼ column ì •ì˜ ë°©ë²•
 create table test01(
-    no number PRIMARY KEY,-- Á¦¾àÁ¶°ÇÀÌ¸§ SYS_C008383
-    content VARCHAR2(255),-- null Çã¿ë
+    no number PRIMARY KEY,-- ì œì•½ì¡°ê±´ì´ë¦„ SYS_C008383
+    content VARCHAR2(255),-- null í—ˆìš©
     writer VARCHAR2(255)
 );
---½Ã½ºÅÛ¿¡¼­ Á¦¾àÁ¶°Ç ÀÌ¸§À» ÀÚµ¿À¸·Î ºÎ¿©ÇØÁİ´Ï´Ù.
---pk ´Â ÀÚµ¿À¸·Î ÀÎµ¦½º¸¦ ¸¸µé¾îÁİ´Ï´Ù.: ºü¸¥°Ë»öÀ» Áö¿øÇÕ´Ï´Ù.
---pk unique(Áßº¹ºÒ°¡)+not null
+--ì‹œìŠ¤í…œì—ì„œ ì œì•½ì¡°ê±´ ì´ë¦„ì„ ìë™ìœ¼ë¡œ ë¶€ì—¬í•´ì¤ë‹ˆë‹¤.
+--pk ëŠ” ìë™ìœ¼ë¡œ ì¸ë±ìŠ¤ë¥¼ ë§Œë“¤ì–´ì¤ë‹ˆë‹¤.: ë¹ ë¥¸ê²€ìƒ‰ì„ ì§€ì›í•©ë‹ˆë‹¤.
+--pk unique(ì¤‘ë³µë¶ˆê°€)+not null
 
---insert into test01(no, content, writer) VALUES(null, '³»¿ë1','ÀÛ¼ºÀÚ1'); --nullºÒ°¡´É
-insert into test01(no, content, writer) VALUES(1, '³»¿ë1','ÀÛ¼ºÀÚ1');
+--insert into test01(no, content, writer) VALUES(null, 'ë‚´ìš©1','ì‘ì„±ì1'); --nullë¶ˆê°€ëŠ¥
+insert into test01(no, content, writer) VALUES(1, 'ë‚´ìš©1','ì‘ì„±ì1');
 select * from test01;
-insert into test01(no, content, writer) VALUES(2, '³»¿ë1','ÀÛ¼ºÀÚ1');
-insert into test01(no, content, writer) VALUES(3, '³»¿ë3',null);
+insert into test01(no, content, writer) VALUES(2, 'ë‚´ìš©1','ì‘ì„±ì1');
+insert into test01(no, content, writer) VALUES(3, 'ë‚´ìš©3',null);
 
 create table test02(
-    no number CONSTRAINT test02_pk PRIMARY KEY, --column ¶óÀÎ¿¡ Å° Á¤ÀÇ
-    -- Á¦¾àÁ¶°ÇÀÌ¸§À» ÁöÁ¤ÇÒ¼ö ÀÖ´Ù.(»ı·«°¡´É) CONSTRAINT Á¦¾àÁ¶°ÇÀÌ¸§  PRIMARY KEY: ÀÏ¹İÀûÀ¸·Î Å×ÀÌºí¸í_pk
+    no number CONSTRAINT test02_pk PRIMARY KEY, --column ë¼ì¸ì— í‚¤ ì •ì˜
+    -- ì œì•½ì¡°ê±´ì´ë¦„ì„ ì§€ì •í• ìˆ˜ ìˆë‹¤.(ìƒëµê°€ëŠ¥) CONSTRAINT ì œì•½ì¡°ê±´ì´ë¦„  PRIMARY KEY: ì¼ë°˜ì ìœ¼ë¡œ í…Œì´ë¸”ëª…_pk
     content VARCHAR2(255),
     writer VARCHAR2(255)
 );
 
---2. Å×ÀÌºíÁ¤ÀÇ ¹æ¹ı
+--2. í…Œì´ë¸”ì •ì˜ ë°©ë²•
 create table test03(
     no number,
     content VARCHAR2(255),
     writer varchar2(255),
-    ---ÄÃ·³¸í°ú Å¸ÀÔÀ» ¸ğµÎ Á¤ÀÇÇÑ ÀÌÈÄ Á¤ÀÇÇÒ¼ö ÀÖ´Ù.
+    ---ì»¬ëŸ¼ëª…ê³¼ íƒ€ì…ì„ ëª¨ë‘ ì •ì˜í•œ ì´í›„ ì •ì˜í•  ìˆ˜ ìˆë‹¤.
     CONSTRAINT test03_pk PRIMARY KEY(no)
 );
 
@@ -49,22 +49,22 @@ create table test04(
     no number,
     content VARCHAR2(255),
     writer varchar2(255),
-    ---ÄÃ·³¸í°ú Å¸ÀÔÀ» ¸ğµÎ Á¤ÀÇÇÑ ÀÌÈÄ Á¤ÀÇÇÒ¼ö ÀÖ´Ù.
-    PRIMARY KEY(no)-- Á¦¾àÁ¶°ÇÀÌ¸§Àº ½Ã½ºÅÛÀÌ ÀÚµ¿À¸·ÎºÎ¿© : SYS_¼ıÀÚ
+    ---ì»¬ëŸ¼ëª…ê³¼ íƒ€ì…ì„ ëª¨ë‘ ì •ì˜í•œ ì´í›„ ì •ì˜í•  ìˆ˜ ìˆë‹¤.
+    PRIMARY KEY(no)-- ì œì•½ì¡°ê±´ì´ë¦„ì€ ì‹œìŠ¤í…œì´ ìë™ìœ¼ë¡œ ë¶€ì—¬ : SYS_ìˆ«ì
 );
 
 desc test04;
 
---2. Foreing Key : ¿Ü·¡ Å°(ÂüÁ¶ Å°)- ´Ù¸¥Å×ÀÌºíÀÇ pk¸¦ ÇöÀçÅ×ÀÌºíÀÇ ÄÃ·³µ¥ÀÌÅÍ·Î »ç¿ë
+--2. Foreing Key : ì™¸ë˜ í‚¤(ì°¸ì¡° í‚¤)- ë‹¤ë¥¸í…Œì´ë¸”ì˜ pkë¥¼ í˜„ì¬í…Œì´ë¸”ì˜ ì»¬ëŸ¼ë°ì´í„°ë¡œ ì‚¬ìš©
 create table dept(
     dept_no NUMBER CONSTRAINT dept_pk PRIMARY KEY ,
     dept_name VARCHAR2(40)    
 );
-insert into dept VALUES(10, '¿µ¾÷ºÎ');
-insert into dept VALUES(20, '°ü¸®ºÎ');
-insert into dept VALUES(30, '»ı»êºÎ');
-insert into dept VALUES(40, '¸¶ÄÉÆÃ');
-insert into dept VALUES(50, 'Àü»ê½Ç');
+insert into dept VALUES(10, 'ì˜ì—…ë¶€');
+insert into dept VALUES(20, 'ê´€ë¦¬ë¶€');
+insert into dept VALUES(30, 'ìƒì‚°ë¶€');
+insert into dept VALUES(40, 'ë§ˆì¼€íŒ…');
+insert into dept VALUES(50, 'ì „ì‚°ì‹¤');
 select * from dept;
 
 drop table emp;
@@ -72,25 +72,25 @@ create table emp(
     emp_no number,
     name VARCHAR2(20),
     dept_no number CONSTRAINT emp_fk REFERENCES dept(dept_no) ,--60,70
-    --           REFERENCES ÂüÁ¶_Å×ÀÌºí¸í(ÂüÁ¶PKÄÃ·³)
+    --           REFERENCES ì°¸ì¡°_í…Œì´ë¸”ëª…(ì°¸ì¡°PKì»¬ëŸ¼)
     CONSTRAINT emp_pk PRIMARY KEY(emp_no)
 );
-insert into emp VALUES(2201, 'ÀÌ¸§1', 10);--deptÅ×ÀÌºíÀÇ pkÄÃ·³¿¡ Á¸ÀçÇÏ´Â µ¥ÀÌÅÍ¸¸ ³Ö¾îÁÖ¼¼¿ä
-insert into emp VALUES(2202, 'ÀÌ¸§2', 10);
-insert into emp VALUES(2203, 'ÀÌ¸§3', 10);
-insert into emp VALUES(2204, 'ÀÌ¸§4', 50);
-insert into emp VALUES(2205, 'ÀÌ¸§5', 20);
-insert into emp VALUES(2206, 'ÀÌ¸§6', 30);
-insert into emp VALUES(2207, 'ÀÌ¸§7', 40);
-insert into emp VALUES(2208, 'ÀÌ¸§8', 40);
-insert into emp VALUES(2209, 'ÀÌ¸§9', null);
+insert into emp VALUES(2201, 'ì´ë¦„1', 10);--deptí…Œì´ë¸”ì˜ pkì»¬ëŸ¼ì— ì¡´ì¬í•˜ëŠ” ë°ì´í„°ë§Œ ë„£ê¸°
+insert into emp VALUES(2202, 'ì´ë¦„2', 10);
+insert into emp VALUES(2203, 'ì´ë¦„3', 10);
+insert into emp VALUES(2204, 'ì´ë¦„4', 50);
+insert into emp VALUES(2205, 'ì´ë¦„5', 20);
+insert into emp VALUES(2206, 'ì´ë¦„6', 30);
+insert into emp VALUES(2207, 'ì´ë¦„7', 40);
+insert into emp VALUES(2208, 'ì´ë¦„8', 40);
+insert into emp VALUES(2209, 'ì´ë¦„9', null);
 select * from emp;
---Forien Key ¿Ü·¡Å° : ÂüÁ¶Å° 
---´Ù¸¥ Å×ÀÌºíÀÇ pk¸¦ ÂüÁ¶ÇÏ´Â Å°
---Å° Á¤ÀÇ½Ã REFERENCES ÂüÁ¶Å×ÀÌºí(ÂüÁ¶ÄÃ·³)
---Ãß°¡ Á¦¾àÀÌ ¾ø´Â°æ¿ì null Çã¿ëÇÕ´Ï´Ù.
+--Forien Key ì™¸ë˜í‚¤ : ì°¸ì¡°í‚¤ 
+--ë‹¤ë¥¸ í…Œì´ë¸”ì˜ pkë¥¼ ì°¸ì¡°í•˜ëŠ” í‚¤
+--í‚¤ ì •ì˜ì‹œ REFERENCES ì°¸ì¡°í…Œì´ë¸”(ì°¸ì¡°ì»¬ëŸ¼)
+--ì¶”ê°€ ì œì•½ì´ ì—†ëŠ”ê²½ìš° null í—ˆìš©
 
---fk¿¬°áµÇ¾îÀÖ´Â µ¥ÀÌºíÀº Á¶ÀÎ(join)À» ÅëÇØ¼­ Á¶È¸ÇÒ¼ö ÀÖ¾î¿ä
+--fkì—°ê²°ë˜ì–´ìˆëŠ” ë°ì´ë¸”ì€ ì¡°ì¸(join)ì„ í†µí•´ì„œ ì¡°íšŒ ê°€ëŠ¥
 select * from emp e, dept d
 where e.dept_no=d.dept_no;
 
@@ -105,57 +105,57 @@ create table emp_test(
     CONSTRAINT emp_test_pk PRIMARY KEY(emp_no)
 );
 
-insert into emp_test VALUES(2201,'Ã¹¹øÂ°','¿µ¾÷ºÎ');
-insert into emp_test VALUES(2202,'µÎ¹øÂ°','¿µ¾÷ºÎ');
-insert into emp_test VALUES(2203,'¼¼¹øÂ°','¿µ¾÷ºÎ');
-insert into emp_test VALUES(2204,'³×¹øÂ°','Àü»ê½Ç');
-insert into emp_test VALUES(2205,'¿À¹øÂ°','Àü»ê½Ç');
-insert into emp_test VALUES(2206,'À°¹øÂ°','Àü»ê½Ç');
+insert into emp_test VALUES(2201,'ì²«ë²ˆì§¸','ì˜ì—…ë¶€');
+insert into emp_test VALUES(2202,'ë‘ë²ˆì§¸','ì˜ì—…ë¶€');
+insert into emp_test VALUES(2203,'ì„¸ë²ˆì§¸','ì˜ì—…ë¶€');
+insert into emp_test VALUES(2204,'ë„¤ë²ˆì§¸','ì „ì‚°ì‹¤');
+insert into emp_test VALUES(2205,'ì˜¤ë²ˆì§¸','ì „ì‚°ì‹¤');
+insert into emp_test VALUES(2206,'ìœ¡ë²ˆì§¸','ì „ì‚°ì‹¤');
 
 select * from emp_test;
 
 --3. Unique
---Áßº¹µ¥ÀÌÅÍ ºÒ°¡ÇÕ´Ï´Ù.
---ÀÚµ¿À¸·Î index¸¦ ¸¸µé¾îÁİ´Ï´Ù.
---null Çã¿ëÇÏ°í ¿©·¯°³ ³ÖÀ»¼ö ÀÖ¾î¿ä: not nullÀ» ÁöÁ¤ÇÏ¸é null Çã¿ëÇÏÁö ¾Ê¾Æ¿ä
+--ì¤‘ë³µë°ì´í„° ë¶ˆê°€í•©ë‹ˆë‹¤.
+--ìë™ìœ¼ë¡œ indexë¥¼ ë§Œë“¤ì–´ ì¤Œ
+--null í—ˆìš©í•˜ê³  ì—¬ëŸ¬ê°œ ë„£ì„ìˆ˜ ìˆìŒ: not nullì„ ì§€ì •í•˜ë©´ null í—ˆìš©í•˜ì§€ ì•ŠìŒ
 create table member(
     mno number primary key,
     email varchar2(40) CONSTRAINT member_email_uk UNIQUE,
     name varchar2(40)
 );
-insert into member values(1, 'test01@test.com','Å×½ºÆ®1');
-insert into member values(2, 'test02@test.com','Å×½ºÆ®1');
-insert into member values(3, null,'Å×½ºÆ®1');
-insert into member values(4, null,'Å×½ºÆ®1');
+insert into member values(1, 'test01@test.com','í…ŒìŠ¤íŠ¸1');
+insert into member values(2, 'test02@test.com','í…ŒìŠ¤íŠ¸1');
+insert into member values(3, null,'í…ŒìŠ¤íŠ¸1');
+insert into member values(4, null,'í…ŒìŠ¤íŠ¸1');
 desc member;
 select * from member;
 
 create table member2(
     mno number primary key,
-    email varchar2(40) UNIQUE,--systemÀÌ ÀÌ¸§ ¸¸µé¾îÁà¿ä
+    email varchar2(40) UNIQUE,--systemì´ ì´ë¦„ ë§Œë“¤ì–´ ì¤Œ
     name varchar2(40)
 );
---4. not null Á¦¾àÁ¶°Ç
--- column line ¿¡¼­¸¸ Á¤ÀÇ °¡´É
--- Á¦¾àÁ¶°ÇÅ¸ÀÔ Check ÀÔ´Ï´Ù.
+--4. not null ì œì•½ì¡°ê±´
+-- column line ì—ì„œë§Œ ì •ì˜ ê°€ëŠ¥
+-- ì œì•½ì¡°ê±´íƒ€ì… Check
 create table member4(
     mno number primary key,
-    email varchar2(40) UNIQUE not null,--systemÀÌ ÀÌ¸§ ¸¸µé¾îÁà¿ä
+    email varchar2(40) UNIQUE not null,--systemì´ ì´ë¦„ ë§Œë“¤ì–´ ì¤Œ
     name varchar2(40) constraint member4_name_nn not null
 );
 
 create table member5(
     mno number primary key,
-    email varchar2(40) UNIQUE not null,--systemÀÌ ÀÌ¸§ ¸¸µé¾îÁà¿ä
+    email varchar2(40) UNIQUE not null,--systemì´ ì´ë¦„ ë§Œë“¤ì–´ ì¤Œ
     name varchar2(40)--,
-    --constraint member5_namenn not null(name)-- not nullÀº Å×ÀÌºí Á¤ÀÇ ºÒ°¡´É
+    --constraint member5_namenn not null(name)-- not nullì€ í…Œì´ë¸” ì •ì˜ ë¶ˆê°€ëŠ¥
     
 );
---Å×ÀÌºí ¼öÁ¤(ÄÃ·³Ãß°¡, ÄÃ·³»èÁ¦, µ¥ÀÌÅÍÅ¸ÀÔº¯°æ, ÄÃ·³ÀÌ¸§º¯°æ)
+--í…Œì´ë¸” ìˆ˜ì •(ì»¬ëŸ¼ì¶”ê°€, ì»¬ëŸ¼ì‚­ì œ, ë°ì´í„°íƒ€ì…ë³€ê²½, ì»¬ëŸ¼ì´ë¦„ë³€ê²½)
 alter table 
 
--- 5. Check Á¦¾àÁ¶°Ç
---ÄÃ·³ÀÇ µ¥ÀÌÅÍ Å¸ÀÔÀÇ ¹üÀ§ ÅëÇØ Çã¿ë°¡´ÉÇÑ Á¶°ÇÀ¸·Î Á¦ÇÑ
+-- 5. Check ì œì•½ì¡°ê±´
+--ì»¬ëŸ¼ì˜ ë°ì´í„° íƒ€ì…ì˜ ë²”ìœ„ í†µí•´ í—ˆìš©ê°€ëŠ¥í•œ ì¡°ê±´ìœ¼ë¡œ ì œí•œ
 create table student(
     std_no number primary key,
     name varchar2(20) not null,
@@ -173,10 +173,10 @@ create table Person(
 insert into Person values(null, 'f');
 insert into Person values(null, 'M');
 insert into Person values(null, default);
-insert into Person(name) values('ÀÌ¸§');-- gender ÄÃ·³µ¥ÀÌÅÍ°¡ ¾øÀ»¶§ default 'F'°¡ Àû¿ë
+insert into Person(name) values('ì´ë¦„');-- gender ì»¬ëŸ¼ë°ì´í„°ê°€ ì—†ì„ë•Œ default 'F'ê°€ ì ìš©
 select  * from person;
 
---ÀÚÁÖ¾²´ÂÁ¦¾à pk, fk, not null
+--ìì£¼ì“°ëŠ”ì œì•½ pk, fk, not null
 
 
 

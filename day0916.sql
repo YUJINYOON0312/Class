@@ -1,43 +1,43 @@
 --SQL : DDL, DCL(TCL), DML
 --DML(CRUD) : insert, select, update, delete
 desc employees;
---select ÄÃ·³¸í,ÄÃ·³¸í from Å×ÀÌºíÀÌ¸§ where Á¶°Ç¹® order by Á¤·ÄÇÒ´ë»óÄÃ·³¸í;
--- ¸ğµçÄÃ·³À» Ãâ·ÂÇÏ±âÀ§ÇØ * »ç¿ë, ¿øÇÏ´Â ÄÃ·³¸¸ ¸í½Ã Á¶È¸ °¡´É
+--select columnëª…,columnëª… from í…Œì´ë¸”ì´ë¦„ where ì¡°ê±´ë¬¸ order by ì •ë ¬í•  ëŒ€ìƒ columnëª…;
+-- ëª¨ë“ columnì„ ì¶œë ¥í•˜ê¸°ìœ„í•´ * ì‚¬ìš©, ì›í•˜ëŠ” columnë§Œ ëª…ì‹œ ì¡°íšŒ ê°€ëŠ¥
 
 select EMPLOYEE_ID, LAST_NAME, EMAIL, HIRE_DATE, JOB_ID  
 from employees
 where EMPLOYEE_ID > 200
-order by HIRE_DATE desc, EMPLOYEE_ID desc; --Á¤·Ä ±âº»Àº asc ¿À¸§Â÷¼øÁ¤·Ä --³»¸²Â÷¼ø desc
+order by HIRE_DATE desc, EMPLOYEE_ID desc; --ì •ë ¬ ê¸°ë³¸ì€ asc ì˜¤ë¦„ì°¨ìˆœì •ë ¬ --ë‚´ë¦¼ì°¨ìˆœ desc
 
--- ÄÃ·³¸íÀÉ º°ÄªÀ¸·Î Ç¥±â °¡´É : ÄÃ·³¸í as º°Äª (as ´Â »ı·«ÇØµµ µÇ¿ä)
+-- columnì„ ë³„ì¹­ìœ¼ë¡œ í‘œê¸° ê°€ëŠ¥ : columnëª… as ë³„ì¹­ (as ëŠ” ìƒëµê°€ëŠ¥)
 select FIRST_NAME||' '||LAST_NAME FULL_NAME from employees;
 
--- distinct : Áßº¹µÈ °á°ú ³ª¿Ã°æ¿ì ÇÏ³ª¸¸ Ç¥±â
+-- distinct : ì¤‘ë³µëœ ê²°ê³¼ ë‚˜ì˜¬ê²½ìš° í•˜ë‚˜ë§Œ í‘œê¸°
 select distinct department_id from employees
 order by department_id;
 
 select distinct job_id from employees;
 
---¼ıÀÚÅ¸ÀÔÀº »ê¼ú¿¬»ê°¡´É(+,-,*,/) :  null °ú ¿¬»ê½Ã °á°ú´Â ¹«Á¶°Ç null
-select employee_id »ç¿ø¹øÈ£, salary ±âº»±Ş¿©, commission_pct º¸³Ê½ºÁö±ŞÀ²,
-salary*NVL(commission_pct,0) º¸³Ê½º , salary+salary*NVL(commission_pct,0) ÃÑ¹ŞÀ»±Ş¿©
+--ìˆ«ìíƒ€ì…ì€ ì‚°ìˆ ì—°ì‚°ê°€ëŠ¥(+,-,*,/) :  null ê³¼ ì—°ì‚°ì‹œ ê²°ê³¼ëŠ” ë¬´ì¡°ê±´ null
+select employee_id ì‚¬ì›ë²ˆí˜¸, salary ê¸°ë³¸ê¸‰ì—¬, commission_pct ë³´ë„ˆìŠ¤ì§€ê¸‰ìœ¨,
+salary*NVL(commission_pct,0) ë³´ë„ˆìŠ¤ , salary+salary*NVL(commission_pct,0) ì´ë°›ì„ê¸‰ì—¬
 from employees
 order by 5 desc;
---order by 5 : 5-ÄÃ·³ÀÇ Ãâ·Â¼ø¼­·Î Á¤·Ä°¡´É
+--order by 5 : 5-columnì˜ ì¶œë ¥ìˆœì„œë¡œ ì •ë ¬ê°€ëŠ¥
 
 select * from employees
-where last_name='King'; -- ÄÃ·³¸í = °Ë»ö¾î Á¤È®ÇÏ°Ô ÀÏÄ¡ÇÏ´Âµ¥ÀÌÅÍ °Ë»ö
---¹®ÀÚ¿­ '' java ==
---ÄÃ·³¸íÀÌ³ª Å×ÀÌºíÀÌ¸§Àº ´ë¼Ò¹®ÀÚ ±¸ºĞ¾øÀÌ »ç¿ëÇÔ
---ÀÔ·ÂµÈ µ¥ÀÌÅÍ °Ë»ö½Ã¿¡´Â ´ë¼Ò¹®ÀÚ ±¸ºĞÇÔ
+where last_name='King'; -- columnëª… = ê²€ìƒ‰ì–´ ì •í™•í•˜ê²Œ ì¼ì¹˜í•˜ëŠ” ë°ì´í„° ê²€ìƒ‰
+--ë¬¸ìì—´ '' java ==
+--columnëª…ì´ë‚˜ í…Œì´ë¸”ì´ë¦„ì€ ëŒ€ì†Œë¬¸ì êµ¬ë¶„ì—†ì´ ì‚¬ìš©í•¨
+--ì…ë ¥ëœ ë°ì´í„° ê²€ìƒ‰ì‹œì—ëŠ” ëŒ€ì†Œë¬¸ì êµ¬ë¶„í•¨
 select * from employees;
 select * from employees
-where last_name like '%ll';--¸¶Áö¸·±Û ll·Î ³¡³ª´Â ¸ğµç±ÛÀÚ
+where last_name like '%ll';--ë§ˆì§€ë§‰ê¸€ llë¡œ ëë‚˜ëŠ” ëª¨ë“ ê¸€ì
 select * from employees
-where last_name like 'll%';--½ÃÀÛ±ÛÀÚ°¡ ll·Î ½ÃÀÛÇÏ´Â ¸ğµç±ÛÀÚ
+where last_name like 'll%';--ì‹œì‘ê¸€ìê°€ llë¡œ ì‹œì‘í•˜ëŠ” ëª¨ë“ ê¸€ì
 
 select * from employees
-where last_name like '%ll%';--½ÃÀÛ±ÛÀÚ,Áß°£ÀÌµç,¸¶Áö¸·ÀÌµç  llÀ» Æ÷ÇÔÇÏ´Â ¸ğµç±ÛÀÚ
+where last_name like '%ll%';--ì‹œì‘ê¸€ì,ì¤‘ê°„ì´ë“ ,ë§ˆì§€ë§‰ì´ë“   llì„ í¬í•¨í•˜ëŠ” ëª¨ë“ ê¸€ì
 
 
 select * from employees
@@ -51,12 +51,12 @@ where hire_date <= '05/01/01'
 order by hire_date;
 
 select * from employees
-where manager_id is null; --nullµ¥ÀÌÅÍ¸¦ Á¶°ÇÀ¸·Î °Ë»ö°¡´É
+where manager_id is null; --nullë°ì´í„°ë¥¼ ì¡°ê±´ìœ¼ë¡œ ê²€ìƒ‰ê°€ëŠ¥
 
 select * from employees
 where commission_pct is null;
 
---nullÀÌ ¾Æ´Ñ µ¥ÀÌÅÍ °Ë»ö
+--nullì´ ì•„ë‹Œ ë°ì´í„° ê²€ìƒ‰
 select * from employees
 where commission_pct is not null;
 
@@ -78,13 +78,13 @@ select email, department_id from employees
 where department_id between 20 and 40
 order by 2;
 
---´ÜÀÏÇà ¿¬»êÀÚ, ´ÙÁßÇà ¿¬»êÀÚ, ±×·ì¿¬»êÀÚ, ÇÔ¼ö
+--ë‹¨ì¼í–‰ ì—°ì‚°ì, ë‹¤ì¤‘í–‰ ì—°ì‚°ì, ê·¸ë£¹ì—°ì‚°ì, í•¨ìˆ˜
 
---Å×ÀÌºí¿¡ ÃÑ·¹ÄÚµå ¼ö 
+--í…Œì´ë¸”ì— ì´ë ˆì½”ë“œ ìˆ˜ 
 select count(*) from employees;
 
 select count(employee_id) from employees;
-select count(commission_pct) from employees;--null Á¦¿Ü
+select count(commission_pct) from employees;--null ì œì™¸
 
 
 

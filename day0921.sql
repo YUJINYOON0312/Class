@@ -1,21 +1,21 @@
 -----------------------------------------------------------------------
------½ºÄ®¶ó ¼­ºêÄõ¸®-----------------------------------------------------
+-----ìŠ¤ì¹¼ë¼ ì„œë¸Œì¿¼ë¦¬-----------------------------------------------------
 -----------------------------------------------------------------------
---select employee_id, email,(select 'µ¥ÀÌÅÍ' from dual) from employees;
+--select employee_id, email,(select 'ë°ì´í„°' from dual) from employees;
 --select employee_id, email,(select department_name from departments) from employees;
--- ´ÙÁßÇà ¼­ºêÄõ¸®(°á°ú°¡ 2°³ÀÌ»ó ³ª¿À´Â Äõ¸®)´Â »ç¿ëºÒ°¡´É
--- ´ÜÀÏÇà ¼­ºêÄõ¸®¸¸ »ç¿ë°¡´É
+-- ë‹¤ì¤‘í–‰ ì„œë¸Œì¿¼ë¦¬(ê²°ê³¼ê°€ 2ê°œì´ìƒ ë‚˜ì˜¤ëŠ” ì¿¼ë¦¬)ëŠ” ì‚¬ìš©ë¶ˆê°€ëŠ¥
+-- ë‹¨ì¼í–‰ ì„œë¸Œì¿¼ë¦¬ë§Œ ì‚¬ìš©ê°€ëŠ¥
 select 
 employee_id, 
 email,
-(select department_name from departments d where e.department_id=d.department_id) ºÎ¼­¸í,
-(select job_title from jobs j  where j.job_id=e.job_id)Á÷Á¾
+(select department_name from departments d where e.department_id=d.department_id) ë¶€ì„œëª…,
+(select job_title from jobs j  where j.job_id=e.job_id)ì§ì¢…
 from employees e
 order by 1;
 
 
 ---------
---oracle¹®¹ı
+--oracleë¬¸ë²•
 select employee_id, email, department_name, job_title
 from employees e, departments d, jobs j
 WHERE e.department_id = d.department_id(+) and e.job_id = j.job_id
@@ -26,7 +26,7 @@ from  departments d,employees e, jobs j
 WHERE d.department_id(+) = e.department_id  and e.job_id = j.job_id
 order by 1;
 
---ANSI ¹®¹ı
+--ANSI ë¬¸ë²•
 select employee_id, email, department_name, job_title
 from employees e LEFT OUTER join departments d
 on d.department_id=e.department_id
@@ -34,10 +34,10 @@ join jobs j
 on e.job_id = j.job_id
 order by 1;
 ---------------------------------------------------------------------
------ÀÎ¶óÀÎ ºä ¼­ºêÄõ¸®-------------------------------------------
+-----ì¸ë¼ì¸ ë·° ì„œë¸Œì¿¼ë¦¬-------------------------------------------
 ---------------------------------------------------------------------
--- fromÀı µÚ¿¡µµ Å×ÀÌºí ´ë½Å Á¶È¸µÈ°á°ú(VIEW)¸¦ ¼­ºêÄõ¸®·Î »ç¿ë
---ÀÔ»çÀÏ±âÁØÀ¸·Î 11~15Â° ÀÔ»çÇÑ »ç¿ø¸¦ È®ÀÎÇÏ°í ½Í¾î¿ä
+-- fromì ˆ ë’¤ì—ë„ í…Œì´ë¸” ëŒ€ì‹  ì¡°íšŒëœê²°ê³¼(VIEW)ë¥¼ ì„œë¸Œì¿¼ë¦¬ë¡œ ì‚¬ìš©
+--ì…ì‚¬ì¼ê¸°ì¤€ìœ¼ë¡œ 11~15ì§¸ ì…ì‚¬í•œ ì‚¬ì›ë¥¼ í™•ì¸í•˜ê³  ì‹¶ì„ë•Œ
 --emp 
 select * from emp;
 select rownum ,e.* from emp e order by hire_date;
@@ -49,7 +49,7 @@ from
     from (select * from emp  order by hire_date) e)
 where rnum BETWEEN 1 and 10;
 -----------------------------------------------------------
---ÆäÀÌÂ¡ Ã³¸®½Ã ¿øÇÏ´Â À§Ä¡¿¡ µ¥ÀÌÅÍ¸¸ °®°í ¿Ã¼ö ÀÖ¾î¿ä
+--í˜ì´ì§• ì²˜ë¦¬ì‹œ ì›í•˜ëŠ” ìœ„ì¹˜ì— ë°ì´í„°ë§Œ ê°–ê³  ì˜¬ ìˆ˜ ìˆ
 -----------------------------------------------------------
 desc employees;
 
@@ -78,14 +78,14 @@ where emp_id=100;
 delete emp where emp_id=100;
 
 
---½ÃÄö½º
---1. ¿¬¼ÓÀûÀÎ ¹øÈ£¸¦ »ı¼º½ÃÄÑÁÖ´Â ±â´É
---2. ¼ıÀÚÇüpk¿¡ Àû¿ëÇÏ¿© »ç¿ë°¡´É
+--ì‹œí€€ìŠ¤
+--1. ì—°ì†ì ì¸ ë²ˆí˜¸ë¥¼ ìƒì„±ì‹œì¼œì£¼ëŠ” ê¸°ëŠ¥
+--2. ìˆ«ìí˜•pkì— ì ìš©í•˜ì—¬ ì‚¬ìš©ê°€ëŠ¥
 create sequence seq_emp
 INCREMENT BY 1 START WITH 1;
---½ÃÄö½º·Î ¹øÈ£ »ı¼º
+--ì‹œí€€ìŠ¤ë¡œ ë²ˆí˜¸ ìƒì„±
 select seq_emp.nextval from dual;
---ÇöÀç ½ÃÄö½º°¡ ¹ßÇàÇÑ ¹øÈ£
+--í˜„ì¬ ì‹œí€€ìŠ¤ê°€ ë°œí–‰í•œ ë²ˆí˜¸
 select seq_emp.currval from dual;
 --9999999999999999999999999999
 --1234567890123456789012345678
@@ -104,9 +104,9 @@ create SEQUENCE seq_board START WITH 1 INCREMENT BY 1;
 insert into board (no, tittle, content,writer, updated_date)
 VALUES(
 seq_board.nextval , 
-'Á¦¸ñ'||seq_board.currval,
-'³»¿ë'||seq_board.currval,
-'ÀÛ¼ºÀÚ'||seq_board.currval,
+'ì œëª©'||seq_board.currval,
+'ë‚´ìš©'||seq_board.currval,
+'ì‘ì„±ì'||seq_board.currval,
 systimestamp
 );
 commit;

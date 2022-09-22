@@ -10,7 +10,7 @@
 		<h1>안녕하세요. 웹은 처음이지?</h1>
 		<a href="http://naver.com">여기를 클릭하면 네이버로연결</a>
 		<hr>
-		<a href="oracle">여기를 클릭하면 DB에 접속할꺼에요</a>
+		<a href="oracle">여기를 클릭하면 DB에 접속한다.</a>
 		<hr>
 		<a href="page1.jsp">페이지 이동</a>
 	</body>

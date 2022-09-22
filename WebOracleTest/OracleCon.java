@@ -23,7 +23,7 @@ public class OracleCon extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-		//DB접속할 정보가필요합니다. DataSource
+		//DB접속할 정보가 필요 DataSource
 		//1. dirverClassName
 		//2. url
 		//3. user

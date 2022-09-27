@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>절대경로로 이동한 게시글페이지 입니다.</h1>
+	<h1>절대경로로 이동한 게시글 페이지 입니다.</h1>
 	<%
 	ResultSet rs=(ResultSet)request.getAttribute("list");
 	while(rs.next()){

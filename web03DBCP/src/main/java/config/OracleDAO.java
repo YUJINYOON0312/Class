@@ -16,14 +16,14 @@ public class OracleDAO {
 		//if(ds==null) new OracleDAO();
 		Connection conn=null;
 		try {
-			conn = ds.getConnection();//pool에서 접속객채 연결
+			conn = ds.getConnection();//pool에서 접속 객체 연결
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return conn;
 	}
 	static {
-		System.out.println("최초사용시 딱 1번만 실행됩니다.");
+		System.out.println("최초 사용시 딱 1번만 실행됩니다.");
 		Context initContext;
 		try {
 			initContext = new InitialContext();
@@ -36,7 +36,7 @@ public class OracleDAO {
 		
 	private OracleDAO() {
 		/*
-		System.out.println("최초사용시 딱 1번만 실행됩니다.");
+		System.out.println("최초 사용시 딱 1번만 실행됩니다.");
 		Context initContext;
 		try {
 			initContext = new InitialContext();

@@ -24,7 +24,7 @@ import domain.dto.MemoDTO;
 @WebServlet(urlPatterns = {"/memo/write","/memo/list"})
 public class MemoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	//url 생성시 select 문을 실행할꺼면 get으로 요청합시다.
+	//url 생성시 select 문을 실행할거면 get으로 요청
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("MemoController doGet");
 		
@@ -37,7 +37,7 @@ public class MemoController extends HttpServlet {
 			path="/memo/write.jsp";
 		}else if(uri.contains("list")) {
 			path="/memo/list.jsp";
-			//DB에 접속해서 memo테이블정보 모두갖고오기
+			//DB에 접속해서 memo테이블정보 모두 갖고오기
 			//OracleDAO aa=new OracleDAO();//생성자가 private
 			Connection conn=OracleDAO.getConnection();
 			String sql="select * from memo order by no desc";

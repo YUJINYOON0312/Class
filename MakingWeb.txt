@@ -1,0 +1,102 @@
+
+1. https://mybatis.org/mybatis-3/getting-started.html
+   - mybatis-x.x.x.jar 파일을 다운로드하고 webapp-WEB-INF-lib 폴더에 저장
+
+2.  webapp-WEB-INF 에 jsp 파일을 생성
+ - <%@page import="nowon.mybatis.MybatisConfig"%>
+<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
+<%@page import="org.apache.ibatis.session.SqlSession"%>
+<%@page import="org.apache.ibatis.session.SqlSessionFactoryBuilder"%>
+<%@page import="org.apache.ibatis.session.SqlSessionFactory"%>
+<%@page import="org.apache.ibatis.io.Resources"%>
+<%@page import="java.io.InputStream"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+
+
+3. main-java 에 package 생성 후 properties 파일 생성
+ - 	driver=oracle.jdbc.OracleDriver
+	url=jdbc:oracle:thin:@127.0.0.1:1521:xe
+	username=nowon
+	password=1234 
+
+
+4. main-java 에 package에 xml 파일을 생성
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  <properties resource="nowon/mybatis/dataSource.properties"/>	
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="${driver}"/>
+        <property name="url" value="${url}"/>
+        <property name="username" value="${username}"/>
+        <property name="password" value="${password}"/>
+      </dataSource>
+    </environment>
+  </environments>
+  <mappers>
+    <mapper resource="nowon/mybatis/mapper/memo-mapper.xml"/>
+  </mappers>
+</configuration>
+
+
+5. main-java 에 package에 mapper 패키지 생성 후 xml 파일 생성- 예) memo-mapper.xml
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MemoMapper">
+  
+</mapper>
+
+
+6. main-java-pakage 에 java파일 생성
+
+package nowon.mybatis;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+public class MybatisConfig {
+	
+	private static SqlSessionFactory sqlSessionFactory;
+	//SqlSessionFactory 싱글톤으로 구성하였습니다.
+	public static SqlSessionFactory getInstance() {
+		if(sqlSessionFactory==null)new MybatisConfig();
+		return sqlSessionFactory;
+	}
+	
+	private MybatisConfig() {
+		String resource = "nowon/mybatis/mybatis-config.xml";
+		InputStream inputStream=null;
+		try {
+			inputStream = Resources.getResourceAsStream(resource);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		sqlSessionFactory =
+				  new SqlSessionFactoryBuilder().build(inputStream);
+	}
+
+}
+
+

@@ -1,0 +1,42 @@
+SELECT * from employees, departments;
+--크로스 조인: 카티션 곱
+
+
+----fk조인조건으로 설정
+SELECT *
+from employees e, departments d
+where e.department_id=d.department_id
+ORDER by 1;
+--fk가 null 인 정보는 조회되지 않습니다.
+
+--ANSI문법
+SELECT *
+from employees e inner join departments d
+on e.department_id=d.department_id --조인조건
+ORDER by 1;
+
+
+--외부조인
+--RIGHT OUTER JOIN
+SELECT *
+from employees e, departments d
+where e.department_id(+)=d.department_id --조인조건
+ORDER by 1;
+
+SELECT *
+from employees right outer join departments d --right join이라고 써도 됨
+on e.department_id(+)=d.department_id --조인조건
+ORDER by 1;
+
+--외부조인 LEFT OUTER JOIN
+SELECT *
+from employees e, departments d
+where e.department_id = d.department_id(+) --조인조건
+--employees 동등조건은 모두 출력하고, 동등조건이 맞지 않는것은 null로 출력(+붙은곳에 null)
+ORDER by 1;
+
+SELECT *
+from employees e LEFT OUTER JOIN departments d --LEFT join
+where e.department_id = d.department_id(+) --조인조건
+ORDER by 1;
+

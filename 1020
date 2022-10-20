@@ -50,7 +50,7 @@ where rnum between 6 and 10;
 select *
 from (select rownum rnum, e.*
       from    (select * from employees
-               order by hire_date desc) e) --인라인뷰(원본테이블을 가공해서 활용)
+               order by hire_date desc) e) --인라인뷰 (원본테이블을 가공해서 활용)
 where rnum >= 6 and rnum <= 10;
 
 select e1.employee_id, e1.email, e2.email 매니저의이메일 from employees e1, employees e2

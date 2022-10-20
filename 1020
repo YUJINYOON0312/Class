@@ -1,0 +1,57 @@
+--inner join
+--outer join
+
+--full join: left + right outer join 이다.
+-ANSI
+select * from employees e full join departments d
+on e.department_id = d.department_id;
+
+--ORACLE
+--union : left + right
+select * from employees e, departments d
+where e.department_id = d.department_id(+)
+union --중복데이터 지우고 합쳐준다.
+select * from employees e, departments d
+where e.department_id(+) = d.department_id
+order by 1;
+
+
+
+--inner join
+select * from departments d, locations l
+where d.location_id=l.location_id
+order by 1;
+
+select * from departments d join locations l
+on d.location_id=l.location_id
+order by 1;
+
+--natural join: 컬럼명이 같으면 자연적으로 조인 조건 where 생성한다.
+select * from departments; -- fk컬럼명 : location_id
+select * from locations; --pk컬럼명 : location_id
+
+select * from departments natural inner join locations;
+--조인조건을 명시하지 않아도 양테이블에 같은 컬럼명이 있으면 자동으로 동등조건비교한다.
+
+
+--where 절에 있는 서브쿼리
+--from 절의 서브쿼리 : 인라인뷰
+--select절의 서브쿼리 : 스칼라 서브쿼리 : 단일행 결과만 허용
+
+
+--페이징을 위한 서브쿼리 : 인라인뷰를 활용한다.
+select *
+from (select rownum rnum, e.*
+      from    (select * from employees
+               order by hire_date desc) e) --인라인뷰(원본테이블을 가공해서 활용)
+where rnum between 6 and 10;
+
+
+select *
+from (select rownum rnum, e.*
+      from    (select * from employees
+               order by hire_date desc) e) --인라인뷰(원본테이블을 가공해서 활용)
+where rnum >= 6 and rnum <= 10;
+
+select e1.employee_id, e1.email, e2.email 매니저의이메일 from employees e1, employees e2
+where e1.manager_id=e2.employee_id;

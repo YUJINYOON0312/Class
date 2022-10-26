@@ -1,0 +1,119 @@
+**DI, AOP, IOC 뉴렉처에서 개념 듣기
+
+
+1. Config에 java생성
+
+
+- @Configuration
+public class MybatisConfig {
+}
+
+
+
+- @Configuration
+public class MybatisConfig {
+	
+	@Bean
+	public SqlSessionFactory SqlSessionFactory(DataSource dataSource ) throws Exception {
+		//jpa때문에 자동으로 설정된 DataSource 사용가능
+		SqlSessionFactoryBean ssfb=new SqlSessionFactoryBean();
+		ssfb.setDataSource(null);
+		return ssfb.getObject();
+	}
+
+}
+
+
+
+- @Configuration
+public class DataBaseOfMybatisConfig {
+	
+	@Bean
+	public SqlSessionFactory sqlSessionFactory(DataSource dataSource ) throws Exception {
+		//jpa때문에 자동으로 설정된 DataSource 사용가능
+		SqlSessionFactoryBean ssfb=new SqlSessionFactoryBean();
+		ssfb.setDataSource(dataSource);
+		ssfb.setConfiguration(mybatisConfig());
+		
+		return ssfb.getObject();
+	}
+	
+	@Bean
+	@ConfigurationProperties(prefix = "mybatis.configuration")
+	 public org.apache.ibatis.session.Configuration mybatisConfig() {
+		return new org.apache.ibatis.session.Configuration();
+	}
+	@Bean
+	public SqlSessionTemplate sqlSessionTemplate(DataSource dataSource) throws Exception {
+		return new SqlSessionTemplate(sqlSessionFactory(dataSource));
+	}
+}
+
+
+
+2. application.yml에 추가
+
+- mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+
+
+3. a태그 고객센터에 /customers/home url주소 만들기 , customer 패키지 생성 - 파일 front.html만들기 
+
+
+
+4. 컨트롤러 생성, 매핑
+ @Controller
+public class CustomerController {
+	
+	@GetMapping("/customers/home")        ------------얘는 url주소
+	public String home() {
+		return "/customer/front";        ------------얘는 파일
+	}
+}
+
+-------------고객센터 페이지 완료---------------
+
+
+3. layout-admin의 a태그 FAQ에 /customers/faq/write url주소 만들기 , 파일 faq-write.html만들기 
+
+
+4.
+@Controller
+public class CustomerController {
+	
+	@GetMapping("/customers/home")
+	public String home() {
+		return "/customer/front";
+	}
+	
+	@GetMapping("/customers/faq/write")
+	public String FaqWrite() {
+		return "admin/customer/faq-write";
+	}
+}
+
+------------FAQ페이지 완료----------------
+
+
+
+<form method="post"> 저장은 post, 가져오기는 get
+
+1. controller에 
+
+	@PostMapping("/admin/customers/faq")
+	private String faq(FaqDTO dto) {
+		return null;
+	}
+
+
+2. dto 파일 만들기 (파라미터가 너무 많아질때)
+
+@Setter
+public class FaqDTO {
+	String division;
+	String question;
+	String answer;
+}
+		

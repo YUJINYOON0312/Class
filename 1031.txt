@@ -1,0 +1,19 @@
+컨트롤러 만들기
+
+1. @Controller
+public class FAQController {
+
+	@GetMapping("/customers")
+	public String customers(Model model) {
+		
+		return "customer/faq/list";
+	}
+}
+
+//////////////model은 DB요청 시
+
+/////////////js ajax 알아보기
+
+
+////////////페이징 공부
+///////////모델 공부

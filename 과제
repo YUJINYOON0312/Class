@@ -1,0 +1,18 @@
+
+
+
+BCryptPasswordEncoder:  bcrypt 알고리즘을 사용하여 암호를 생성한다. 암호 크래킹에 대한 저항력을 높이기 위해 bcrypt는 의도적으로 느리다.
+//BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(16);
+//String result = encoder.encode("myPassword");
+
+----------------------------------------------------------------------------------------------
+
+principal : 사용자를 식별한다. username/password 로 인증할때는 UserDetails의 인스턴스이다.
+- UserDetails는 UserDetailsService에 의해 반환된다. 
+
+credentials : 종종 password 이다. 사용자가 유출되지 않도록 인증한 후 삭제된다.
+
+authorities : user에게 부여된 권한이다.
+-GrantedAuthority는 사용자에게 부여된 높은 수준의 권한이다. GrantedAuthority는 Authentication.getAuthorities() 메서드로부터 존재한다. 이 메서드는 GrantedAuthority제공합니다.
+GrantedAuthoriy의 Collection을 제공한다.
+이러한 권한은 일반적으로 roles이다. 이러한 roles는 나중에 웹 권한 부여, 메서드 권한 부여 및 도메인 개체 권한 부여를 위해 구성됩니다.
